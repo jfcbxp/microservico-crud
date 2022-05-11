@@ -1,13 +1,11 @@
 package com.jfcbxp.crud.domain;
 
-import com.jfcbxp.crud.domain.dto.ProdutoDTO;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,9 +27,4 @@ public class Produto {
     private String name;
     private BigDecimal estoque;
     private BigDecimal preco;
-
-    public static Produto create(ProdutoDTO produto) {
-        return new ModelMapper().map(produto, Produto.class);
-    }
-
 }
