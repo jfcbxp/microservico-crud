@@ -2,17 +2,17 @@ package com.jfcbxp.crud.service;
 
 import com.jfcbxp.crud.domain.Produto;
 import com.jfcbxp.crud.domain.dto.ProdutoDTO;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ProdutoService {
     Produto createProduto(ProdutoDTO produtoDTO);
 
-    List<Produto> findAllProduto();
+    Page<Produto> findAllProduto(Pageable pageable);
 
-    Produto findById(Integer id);
+    Produto findProdutoById(Integer id);
 
-    Produto update(ProdutoDTO produtoDTO);
+    Produto updateProduto(ProdutoDTO produtoDTO);
 
-    void delete(Integer id);
+    void deleteProduto(Integer id);
 }
