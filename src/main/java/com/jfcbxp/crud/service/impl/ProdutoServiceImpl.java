@@ -7,9 +7,10 @@ import com.jfcbxp.crud.service.ProdutoService;
 import com.jfcbxp.crud.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,28 +25,28 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto createProduto(ProdutoDTO produtoDTO) {
-        return repository.save(mapper.map(produtoDTO,Produto.class));
+        return repository.save(mapper.map(produtoDTO, Produto.class));
     }
 
     @Override
-    public List<Produto> findAllProduto() {
-        return repository.findAll();
+    public Page<Produto> findAllProduto(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
-    public Produto findById(Integer id) {
+    public Produto findProdutoById(Integer id) {
         Optional<Produto> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(OBJETO_NAO_ENCONTRADO_POR_ESSE_ID));
     }
 
     @Override
-    public Produto update(ProdutoDTO produtoDTO) {
-        return repository.save(findById(produtoDTO.getId()));
+    public Produto updateProduto(ProdutoDTO produtoDTO) {
+        return repository.save(findProdutoById(produtoDTO.getId()));
     }
 
     @Override
-    public void delete(Integer id) {
-        repository.deleteById(findById(id).getId());
+    public void deleteProduto(Integer id) {
+        repository.deleteById(findProdutoById(id).getId());
     }
 
 
