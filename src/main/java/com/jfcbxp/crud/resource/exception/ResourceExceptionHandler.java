@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,11 +33,12 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   HttpStatus status,
                                                                   WebRequest request) {
         BindingResult result = ex.getBindingResult();
-        String fields = result.getFieldErrors().stream()
-                .map(f -> String.valueOf(f.getField()))
+        String fields;
+        fields = result.getFieldErrors().stream()
+                .map(FieldError::getDefaultMessage)
                 .collect(Collectors.joining("-", "{", "}"));
 
-        StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), "erro na validação dos seguintes campos " + fields,
+        StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), fields,
                 request.getContextPath());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 

@@ -42,7 +42,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public Produto updateProduto(ProdutoDTO produtoDTO) {
         findProdutoById(produtoDTO.getId());
-        return repository.save(mapper.map(produtoDTO,Produto.class));
+        return repository.save(mapper.map(produtoDTO, Produto.class));
     }
 
     @Override
