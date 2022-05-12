@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
 
-    public static final String OBJETO_NAO_ENCONTRADO_POR_ESSE_ID = "Objeto não encontrado por esse id";
+    public static final String OBJETO_NAO_ENCONTRADO_POR_ESSE_ID = "Objeto não encontrado para esse id";
     @Autowired
     private ProdutoRepository repository;
 
@@ -41,7 +41,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto updateProduto(ProdutoDTO produtoDTO) {
-        return repository.save(findProdutoById(produtoDTO.getId()));
+        findProdutoById(produtoDTO.getId());
+        return repository.save(mapper.map(produtoDTO,Produto.class));
     }
 
     @Override
