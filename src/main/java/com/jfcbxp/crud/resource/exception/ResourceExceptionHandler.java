@@ -33,8 +33,7 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   HttpStatus status,
                                                                   WebRequest request) {
         BindingResult result = ex.getBindingResult();
-        String fields;
-        fields = result.getFieldErrors().stream()
+        String fields = (result == null) ? "" : result.getFieldErrors().stream()
                 .map(FieldError::getDefaultMessage)
                 .collect(Collectors.joining("-", "{", "}"));
 
