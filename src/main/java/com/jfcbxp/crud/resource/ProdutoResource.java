@@ -65,10 +65,7 @@ public class ProdutoResource {
                 .forEach(p -> p.add(linkTo(methodOn(ProdutoResource.class).findProdutoById(p.getId())).withSelfRel()));
 
         PagedModel<EntityModel<ProdutoDTO>> pagedModel = assembler.toModel(produtos);
-
-
         return ResponseEntity.ok().body(pagedModel);
-
     }
 
     @PostMapping(produces = {APPLICATION_JSON, APPLICATION_XML, APPLICATION_X_YAML},
