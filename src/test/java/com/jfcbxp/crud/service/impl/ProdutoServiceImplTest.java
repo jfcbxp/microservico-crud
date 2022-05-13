@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
@@ -65,6 +64,7 @@ class ProdutoServiceImplTest {
         assertEquals(PRODUTO_NOME, response.getName());
         assertEquals(PRODUTO_ESTOQUE, response.getEstoque());
         assertEquals(PRODUTO_PRECO, response.getPreco());
+        assertEquals(produto, response);
 
     }
 
@@ -93,6 +93,8 @@ class ProdutoServiceImplTest {
         assertEquals(PRODUTO_NOME, response.getName());
         assertEquals(PRODUTO_ESTOQUE, response.getEstoque());
         assertEquals(PRODUTO_PRECO, response.getPreco());
+        assertEquals(response,produto);
+
 
 
     }
