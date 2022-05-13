@@ -143,8 +143,18 @@ class ProdutoResourceTest {
     }
 
     private void startProduto() {
-        produto = new Produto(PRODUTO_ID, PRODUTO_NOME, PRODUTO_ESTOQUE, PRODUTO_PRECO);
-        produtoDTO = new ProdutoDTO(PRODUTO_ID, PRODUTO_NOME, PRODUTO_ESTOQUE, PRODUTO_PRECO);
+        produto = new Produto();
+        produto.setId(PRODUTO_ID);
+        produto.setName(PRODUTO_NOME);
+        produto.setEstoque(PRODUTO_ESTOQUE);
+        produto.setPreco(PRODUTO_PRECO);
+
+        produtoDTO = new ProdutoDTO();
+        produtoDTO.setId(PRODUTO_ID);
+        produtoDTO.setName(PRODUTO_NOME);
+        produtoDTO.setEstoque(PRODUTO_ESTOQUE);
+        produtoDTO.setPreco(PRODUTO_PRECO);
+
         optionalProduto = Optional.of(new Produto(PRODUTO_ID, PRODUTO_NOME, PRODUTO_ESTOQUE, PRODUTO_PRECO));
         produtosDTOPage = new PageImpl<>(List.of(produtoDTO));
         produtosPage = new PageImpl<>(List.of(produto));

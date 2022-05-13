@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@ToString
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
