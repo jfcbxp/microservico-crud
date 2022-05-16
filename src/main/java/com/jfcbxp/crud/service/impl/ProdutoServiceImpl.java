@@ -2,6 +2,7 @@ package com.jfcbxp.crud.service.impl;
 
 import com.jfcbxp.crud.domain.Produto;
 import com.jfcbxp.crud.domain.dto.ProdutoDTO;
+import com.jfcbxp.crud.message.ProdutoSendMessage;
 import com.jfcbxp.crud.repository.ProdutoRepository;
 import com.jfcbxp.crud.service.ProdutoService;
 import com.jfcbxp.crud.service.exception.ObjectNotFoundException;
@@ -23,8 +24,12 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
+    private ProdutoSendMessage produtoSendMessage;
+
     @Override
     public Produto createProduto(ProdutoDTO produtoDTO) {
+        produtoSendMessage.sendMessage(produtoDTO);
         return repository.save(mapper.map(produtoDTO, Produto.class));
     }
 

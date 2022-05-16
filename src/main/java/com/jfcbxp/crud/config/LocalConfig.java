@@ -19,8 +19,8 @@ public class LocalConfig {
 
     @Bean
     public void startBD() {
-        Produto p1 = new Produto(null,"cimento", BigDecimal.ONE,BigDecimal.TEN);
-        Produto p2 = new Produto(null,"telha", BigDecimal.TEN,BigDecimal.ONE);
+        Produto p1 = new Produto(null,"teste", BigDecimal.ONE,BigDecimal.TEN);
+        Produto p2 = new Produto(null,"teste2", BigDecimal.TEN,BigDecimal.ONE);
         repository.saveAll(List.of(p1,p2));
 
     }
