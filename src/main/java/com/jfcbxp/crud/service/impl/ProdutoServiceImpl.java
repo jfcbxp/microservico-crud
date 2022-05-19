@@ -29,8 +29,9 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto createProduto(ProdutoDTO produtoDTO) {
-        produtoSendMessage.sendMessage(produtoDTO);
-        return repository.save(mapper.map(produtoDTO, Produto.class));
+        Produto response = repository.save(mapper.map(produtoDTO, Produto.class));
+        produtoSendMessage.sendMessage(mapper.map(response, ProdutoDTO.class));
+        return response;
     }
 
     @Override
